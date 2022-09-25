@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'display_collage',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,5 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.spotify.SpotifyOAuth2',
 )
 SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
+
+LOGIN_REDIRECT_URL = '/display_collage'

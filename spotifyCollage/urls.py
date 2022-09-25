@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('spotify_auth/', include('spotify_auth.urls')),
     path('social/', include('social_django.urls')),
+    path('', include('display_collage.urls')),
 ]
