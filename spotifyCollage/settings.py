@@ -134,6 +134,6 @@ SOCIAL_AUTH_SPOTIFY_SECRET = '885d1d474fe4434688e8ff5049ff8df3'
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.spotify.SpotifyOAuth2',
 )
-SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
+SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read', 'user-top-read']
 
 LOGIN_REDIRECT_URL = '/display_collage'
