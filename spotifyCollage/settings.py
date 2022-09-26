@@ -141,3 +141,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read', 'user-top-read']
 
 LOGIN_REDIRECT_URL = '/display_collage'
+
+# React
+
+CORS_ORIGIN_ALLOW_ALL = True
