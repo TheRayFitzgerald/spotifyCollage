@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from "reactstrap";
 import AlbumGrid from "./AlbumGrid";
 
@@ -7,6 +7,42 @@ import axios from "axios";
 
 import { API_URL } from "../constants";
 
+  
+
+
+function Home() {
+  const [albums, setAlbums] = useState('');
+
+  useEffect(() => {
+    this.resetState();  
+  })
+
+  const getAlbums = () => {
+    axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
+  };
+
+  const resetState = () => {
+    getAlbums();
+  };
+
+  return (
+    <Container style={{ marginTop: "20px" }}>
+      <Row>
+        <Col>
+          <AlbumGrid
+            albums={albums}
+            resetState={resetState}
+          />
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+
+export default Home;
+
+/*
 class Home extends Component {
   state = {
     albums: []
@@ -39,5 +75,4 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
+*/
