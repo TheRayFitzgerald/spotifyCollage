@@ -14,25 +14,28 @@ function Home() {
   const [albums, setAlbums] = useState('');
 
   useEffect(() => {
-    this.resetState();  
+    resetState();  
   })
-
+  
   const getAlbums = () => {
     axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
   };
-
+  
   const resetState = () => {
     getAlbums();
   };
+
+  /*
+  return (
+    <h3>This is a Functional Component</h3>
+  );
+  */
 
   return (
     <Container style={{ marginTop: "20px" }}>
       <Row>
         <Col>
-          <AlbumGrid
-            albums={albums}
-            resetState={resetState}
-          />
+          {AlbumGrid(albums)}
         </Col>
       </Row>
     </Container>
