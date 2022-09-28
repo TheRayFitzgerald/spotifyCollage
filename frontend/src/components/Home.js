@@ -7,10 +7,10 @@ import axios from "axios";
 
 import { API_URL } from "../constants";
 
-  
 
 
-function Home() {
+function Home(token) {
+  console.log('Home');
   const [albums, setAlbums] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,14 @@ function Home() {
   })
   
   const getAlbums = () => {
-    axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
+    // axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
+    axios.get(API_URL, {
+      params: {
+        token: token
+      }
+    }).then(
+      res => setAlbums({ albums: res.data })
+    );
   };
   
   const resetState = () => {

@@ -140,7 +140,9 @@ AUTHENTICATION_BACKENDS = (
 )
 SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read', 'user-top-read']
 
-LOGIN_REDIRECT_URL = '/display_collage'
+# LOGIN_REDIRECT_URL = '/display_collage'
+LOGIN_REDIRECT_URL = 'http://localhost:3000/'
+
 
 # React
 
