@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    height: 50%;
+    width: 50%;
+
+    align-items: center;
+    justify-items: center; /* adjusted */
+}
+
+
+img {
+  width: 100%;
+}

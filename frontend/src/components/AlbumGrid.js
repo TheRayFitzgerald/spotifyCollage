@@ -1,5 +1,6 @@
 import React from "react";
 import '../css/AlbumGrid.css';
+import { Container } from "../styles/AlbumGrid.styles"
 
 
 function AlbumGrid(albums) {
@@ -8,7 +9,7 @@ function AlbumGrid(albums) {
   console.log(albums['albums'])
   albums = albums['albums']
   return (
-    <div class="grid-container">
+    <Container style={{ 'grid-template-columns': `repeat(12, auto)`, 'grid-template-rows': `repeat(12, auto)` }}>
       {!albums || albums.length <= 0 ? (
         <tr>
           <td colSpan="6" align="center">
@@ -16,13 +17,13 @@ function AlbumGrid(albums) {
           </td>
         </tr>
       ) : (
-        albums.map(album => (
+        albums.slice(0, 144).map(album => (
 
           <div class="grid-item"><img src={album.cover_art_url} /></div>
 
         ))
       )}
-    </div>
+    </Container>
   );
 
 }
