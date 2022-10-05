@@ -7,8 +7,64 @@ import axios from "axios";
 
 import { API_URL } from "../constants";
 
+function Home(token) {
+  console.log('Home');
+  const [collage, setCollage] = useState('');
+
+  useEffect(() => {
+    resetState();  
+  })
+  
+  const getCollage = () => {
+    // axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
+    axios.get(API_URL, {
+      params: {
+        token: token
+      }
+    }).then(
+      res => setCollage({ collage: res.data })
+    );
+  };
+  
+  const resetState = () => {
+    getCollage();
+  };
+  return (
+    <Container style={{ marginTop: "20px" }}>
+      <h3>This is a Functional Component</h3>
+      <img src={collage.img} alt="collage" />
+    </Container>
+  );
+
+  /*
+  return (
+    <h3>This is a Functional Component</h3>
+  );
+  */
+  /*
+  return (
+    <Container style={{ marginTop: "20px" }}>
+      <Row>
+        <Col>
+          {AlbumGrid(albums)}
+        </Col>
+      </Row>
+    </Container>
+  );
+  */
+}
 
 
+
+
+
+
+
+export default Home;
+
+
+
+/* 05/10 using collage object not album
 function Home(token) {
   console.log('Home');
   const [albums, setAlbums] = useState('');
@@ -37,7 +93,7 @@ function Home(token) {
     <h3>This is a Functional Component</h3>
   );
   */
-
+  /*
   return (
     <Container style={{ marginTop: "20px" }}>
       <Row>
@@ -47,10 +103,12 @@ function Home(token) {
       </Row>
     </Container>
   );
-}
+  */
 
 
-export default Home;
+
+
+
 
 /*
 class Home extends Component {

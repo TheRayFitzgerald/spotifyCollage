@@ -1,8 +1,23 @@
 from rest_framework import serializers
-from .models import Album
+from .models import Album, Collage
 
 class AlbumSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Album 
-        fields = ('pk', 'title', 'cover_art_url')
+        fields = ('cover_art_img')
+
+class CollageSerializer(serializers.ModelSerializer):
+    # img_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Collage
+        # fields = ['img', 'img_url']
+        fields = ['name', 'img',]
+
+    '''
+    def get_img_url(self, collage):
+        request = self.context.get('request')
+        img_url = collage.img.url
+        return request.build_absolute_uri(img_url)
+    '''

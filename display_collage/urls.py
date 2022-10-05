@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     re_path(r'^api/albums/$', views.albums_list),
+    re_path(r'^api/collages/$', views.collage_list),
     path('display_collage/', views.albums_list),    
 ]
