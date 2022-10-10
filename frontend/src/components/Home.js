@@ -12,8 +12,6 @@ function Home(token) {
   console.log('Home');
   const [collage, setCollage] = useState('');
 
-  const img = collage['collage'] ? collage['collage']['img'] : null;
-
   useEffect(() => {
     resetState();  
   })
@@ -32,12 +30,16 @@ function Home(token) {
   const resetState = () => {
     getCollage();
   };
-  return (
-    
+  // const img = collage['collage'] ? collage['collage']['img'] : null;
+
+  return (    
       <ImageContainer>
-        <img src={img} alt="collage" style={{ alignSelf: 'center' }} />
+        {collage ? (
+        <img src={collage['collage']['img']} alt="collage" style={{ alignSelf: 'center' }} />
+      ) : (
+        <h2>no image</h2>
+      )}
       </ImageContainer>
-    
   );
 
   /*
