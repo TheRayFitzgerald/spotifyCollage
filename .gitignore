@@ -4,5 +4,5 @@ notes.txt
 .DS_Store
 db.sqlite3
 *.jpg
-db.sqlite3
 media
+db*
