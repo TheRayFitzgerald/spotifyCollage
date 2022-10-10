@@ -114,13 +114,16 @@ def albums_list(request):
         # collage.save("test_name", ContentFile(collage_image_io.getvalue()))
         # Collage.objects.create(name="test_name", img=ContentFile(collage_image_io.getvalue()))
 
-        print('saved collage')
+        print('saved collage img url')
+        print(collage.img)
+        print('0 collage img url')
+        print(Collage.objects.all()[0].img)        
         # print(collage)
         # print(collage_image_io.getvalue())
         # collage_album = Album(cover_art_img=collage_img)
         
         # serializer = AlbumSerializer(collage_album, context={'request': request}, many=True)
-        serializer = CollageSerializer(Collage.objects.all(), context={'request': request}, many=True)
+        serializer = CollageSerializer(Collage.objects.all()[0], context={'request': request})
         collage_img.save('./collage_img9.jpg')
         return Response(serializer.data)
 

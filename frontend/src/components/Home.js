@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from "reactstrap";
-import AlbumGrid from "./AlbumGrid";
+import '../css/Home.css';
+import { ImageContainer } from "../styles/Home.styles"
 
 
 import axios from "axios";
@@ -10,6 +11,8 @@ import { API_URL } from "../constants";
 function Home(token) {
   console.log('Home');
   const [collage, setCollage] = useState('');
+
+  const img = collage['collage'] ? collage['collage']['img'] : null;
 
   useEffect(() => {
     resetState();  
@@ -30,10 +33,11 @@ function Home(token) {
     getCollage();
   };
   return (
-    <Container style={{ marginTop: "20px" }}>
-      <h3>This is a Functional Component</h3>
-      <img src={collage.img} alt="collage" />
-    </Container>
+    
+      <ImageContainer>
+        <img src={img} alt="collage" style={{ alignSelf: 'center' }} />
+      </ImageContainer>
+    
   );
 
   /*
