@@ -13,7 +13,7 @@ class CollageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collage
         # fields = ['img', 'img_url']
-        fields = ['name', 'img', 'img_url']
+        fields = ['img', 'img_url']
 
     
     def get_img_url(self, collage):

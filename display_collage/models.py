@@ -14,7 +14,6 @@ class Album(models.Model):
 
 
 class Collage(models.Model):
-    name = models.TextField(default="filler")
     img = models.ImageField(default=None, upload_to='media/', null=False)
     # img_url = models.TextField(default=img.url)
 

@@ -23,7 +23,7 @@ from django.core.files.base import ContentFile
 
 
 NUMBER_OF_ALBUMS = 50
-PERIOD = "short_term"
+PERIOD = "long_term"
 
 imgdict = dict()
 q = queue.Queue()
@@ -33,70 +33,7 @@ q = queue.Queue()
 @api_view(['GET'])
 def albums_list(request):
 
-        Album.objects.all().delete()
-        albums_set = set()
-
-        print('getting token from url')
-        token = request.GET.get('token')
-        print(token)
-
-        #social = self.request.user.social_auth.get(provider='spotify')
-        # print('social' + social.extra_data + 'socialend')
-        
-
-        # spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id='30a5904c955c4c92b9543e2f9bfb05c7', client_secret='885d1d474fe4434688e8ff5049ff8df3'))
-        spotify = spotipy.Spotify(token)
-
-        # results1 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='short_term')
-        # results2 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='medium_term')
-        results3 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='long_term')
-        # print('results')
-        # print(len(results1))
-        # print(results1)
-        '''
-        for track in results1['items']:
-            print('results1')
-            # print('track    : ' + track['name'])
-            # print('cover art: ' + track['album']['images'][0]['url'])
-            # print()
-
-            album = Album(title=track['name'], cover_art_url=track['album']['images'][2]['url'])
-            album.save()
-            albums_set.add(album)
-
-        for track in results2['items']:
-            print('results2')
-            # print('track    : ' + track['name'])
-            # print('cover art: ' + track['album']['images'][0]['url'])
-            # print()
-
-            album = Album(title=track['name'], cover_art_url=track['album']['images'][2]['url'])
-            album.save()
-            albums_set.add(album)
-        '''
-        for track in results3['items']:
-            # print('track    : ' + track['name'])
-            # print('cover art: ' + track['album']['images'][0]['url'])
-            # print()
-
-            album = Album(title=track['album']['name'], cover_art_url=track['album']['images'][2]['url'])
-            album.save()
-            albums_set.add(album)
-
-
-
-        data = Album.objects.all()
-        
-        '''
-        filenames=list()
-        for i, album in enumerate(data):
-            img_data = requests.get(album.cover_art_url).content
-            filename = 'image_%s.jpg' % i
-            with open('./images/%s' % filename, 'wb') as handler:
-                handler.write(img_data)
-            
-            filenames.append(filename)
-        '''
+        albums_set = get_spotify_album_data(request)
         
         img_list = download_imgs(albums_set)
         collage_img = generate_collage(img_list)
@@ -107,32 +44,84 @@ def albums_list(request):
         img_content = ContentFile(collage_image_io.getvalue())
         
         collage = Collage()
-        collage.name = "Test tut2"
-        collage.img.save("sample.jpg", img_content, save=False)
+        collage.img.save("collage.jpg", img_content, save=False)
         collage.save()
 
         # collage.save("test_name", ContentFile(collage_image_io.getvalue()))
         # Collage.objects.create(name="test_name", img=ContentFile(collage_image_io.getvalue()))
 
-        print('saved collage img url')
-        print(collage.img)
-        print('0 collage img url')
-        print(Collage.objects.all()[0].img)        
+        # print('saved collage img url')
+        # print(collage.img)       
         # print(collage)
         # print(collage_image_io.getvalue())
         # collage_album = Album(cover_art_img=collage_img)
         
         # serializer = AlbumSerializer(collage_album, context={'request': request}, many=True)
-        serializer = CollageSerializer(Collage.objects.all()[0], context={'request': request})
+        serializer = CollageSerializer(collage, context={'request': request})
         collage_img.save('./collage_img9.jpg')
         return Response(serializer.data)
+
+
+def get_spotify_album_data(request):
+
+    Album.objects.all().delete()
+    albums_set = set()
+
+    token = request.GET.get('token')
+    
+
+    #social = self.request.user.social_auth.get(provider='spotify')
+    # print('social' + social.extra_data + 'socialend')
+    
+
+    # spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id='30a5904c955c4c92b9543e2f9bfb05c7', client_secret='885d1d474fe4434688e8ff5049ff8df3'))
+    spotify = spotipy.Spotify(token)
+
+    # results1 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='short_term')
+    # results2 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='medium_term')
+    results3 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range=PERIOD)
+    # print('results')
+    # print(len(results1))
+    # print(results1)
+    '''
+    for track in results1['items']:
+        print('results1')
+        # print('track    : ' + track['name'])
+        # print('cover art: ' + track['album']['images'][0]['url'])
+        # print()
+
+        album = Album(title=track['name'], cover_art_url=track['album']['images'][2]['url'])
+        album.save()
+        albums_set.add(album)
+
+    for track in results2['items']:
+        print('results2')
+        # print('track    : ' + track['name'])
+        # print('cover art: ' + track['album']['images'][0]['url'])
+        # print()
+
+        album = Album(title=track['name'], cover_art_url=track['album']['images'][2]['url'])
+        album.save()
+        albums_set.add(album)
+    '''
+    for track in results3['items']:
+        # print('track    : ' + track['name'])
+        # print('cover art: ' + track['album']['images'][0]['url'])
+        # print()
+
+        album = Album(title=track['album']['name'], cover_art_url=track['album']['images'][2]['url'])
+        albums_set.add(album)
+
+    return albums_set
+
+
 
 def generate_collage(img_list):
 
     img_rows = list()
     n_rows = isqrt(len(img_list))
-    print('len img_list: %i' % len(img_list))
-    print('n_rows: %i' % n_rows)
+    # print('len img_list: %i' % len(img_list))
+    # print('n_rows: %i' % n_rows)
 
     for i in range(0, n_rows):
         try:
@@ -191,7 +180,7 @@ def download_img(album):
     response = requests.get(album.cover_art_url)
     img = Image.open(BytesIO(response.content))
     if img.mode != 'RGB':
-        print('Converting to RGB: %s' % img.mode)
+        # print('Converting to RGB: %s' % img.mode)
         img = img.convert('RGB')
     
     return img
