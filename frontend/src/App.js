@@ -9,13 +9,15 @@ import axios from "axios";
 import { API_URL } from "./constants";
 import { Dots } from 'loading-animations-react';
 import Header from "./components/Header";
+//import { redirect } from "react-router-dom";
+import {redirect} from 'react-router';
 
 const App = () => {
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
   const [collage, setCollage] = useState('');
 
   const SPOTIFY_CLIENT_ID = '30a5904c955c4c92b9543e2f9bfb05c7' 
-  const REACT_APP_REDIRECT_URI = "http://localhost:3000/callback"
+  const REACT_APP_REDIRECT_URI = "http://localhost:3000/"
 
   const getCollage = () => {
     axios.get(API_URL, {
@@ -29,19 +31,9 @@ const App = () => {
 
   useEffect(() => {
     console.log('useEffect');
-    getCollage();    
+    getCollage();
   }, [token]);
 
-  const resetState = () => {
-    if (collage === '') {
-      console.log('getting collage');
-      getCollage();
-      if (collage === '') {
-        console.log('empty collage');
-        console.log(collage);
-      }
-    } 
-  };
     
   return (
     <Container>
@@ -59,7 +51,7 @@ const App = () => {
         <SpotifyAuth
           redirectUri={REACT_APP_REDIRECT_URI}
           clientID={SPOTIFY_CLIENT_ID}
-          scopes={[Scopes.userReadPrivate, Scopes.userTopRead]} // either style will work
+          scopes={[Scopes.userTopRead]} // either style will work
           onAccessToken={(token) => setToken(token)}
         />
       )}

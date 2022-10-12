@@ -6,6 +6,6 @@ export const ImageContainer = styled.div `
     margin-left: auto;
     margin-right: auto;
     alignSelf: 'center'
-    height: 50%;
-    width: 50%;
+    height: 70%;
+    width: 70%;
 `
