@@ -5,12 +5,12 @@ import 'react-spotify-auth/dist/index.css'
 import React, { useState, useEffect } from 'react';
 import './css/Home.css';
 import { ImageContainer } from "./styles/Home.styles"
+import { SpotifyAuthContainer } from "./styles/App.styles"
 import axios from "axios";
 import { API_URL } from "./constants";
 import { Dots } from 'loading-animations-react';
 import Header from "./components/Header";
-//import { redirect } from "react-router-dom";
-import {redirect} from 'react-router';
+import Footer from './components/Footer';
 
 const App = () => {
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
@@ -48,13 +48,16 @@ const App = () => {
         </ImageContainer>
       ) : (
         // Display the login page
+        <SpotifyAuthContainer>
         <SpotifyAuth
           redirectUri={REACT_APP_REDIRECT_URI}
           clientID={SPOTIFY_CLIENT_ID}
           scopes={[Scopes.userTopRead]} // either style will work
           onAccessToken={(token) => setToken(token)}
         />
+        </SpotifyAuthContainer>
       )}
+    <Footer />
     </Container>
   )
 }

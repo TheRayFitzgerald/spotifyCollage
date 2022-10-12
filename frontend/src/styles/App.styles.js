@@ -7,5 +7,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #191414;
+  background-color: #1DB954;
+`
+
+export const SpotifyAuthContainer= styled.div`
+  padding: 20px;
+  background-color: black;
+  border-radius: 15px;
 `
