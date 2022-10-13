@@ -34,7 +34,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token && !collage) {
       console.log('useEffect');
       getCollage();
     }    

@@ -1,9 +1,10 @@
+from importlib.metadata import metadata
 from unicodedata import name
 from django.shortcuts import render
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-from .models import Album
+from .models import Album, Collage, User
 from .serializers import *
 from django.shortcuts import render
 from django.views import generic
@@ -35,7 +36,7 @@ q = queue.Queue()
 def albums_list(request):
 
         # get the spotify ablum data
-        albums_set = get_spotify_album_data(request)
+        albums_set, user = get_spotify_album_data(request)
         
         # download the album cover art images
         img_list = download_imgs(albums_set)
@@ -44,7 +45,7 @@ def albums_list(request):
         collage_img = generate_collage(img_list)
         
         # create the collage object 
-        collage =  save_collage(collage_img)
+        collage =  save_collage(collage_img, user)
 
         # serialize the collage object
         serializer = CollageSerializer(collage, context={'request': request})
@@ -60,6 +61,10 @@ def get_spotify_album_data(request):
     
     spotify = spotipy.Spotify(token)
 
+    # Create user object 
+    current_user = spotify.current_user()
+    user, created = User.objects.get_or_create(display_name=current_user['display_name'], metadata=current_user)
+
     # results1 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='short_term')
     # results2 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range='medium_term')
     results3 = spotify.current_user_top_tracks(limit=NUMBER_OF_ALBUMS, time_range=PERIOD)
@@ -68,7 +73,7 @@ def get_spotify_album_data(request):
         album = Album(title=track['album']['name'], cover_art_url=track['album']['images'][IMAGE_QUALITY]['url'])
         albums_set.add(album)
 
-    return albums_set
+    return albums_set, user
 
 
 def generate_collage(img_list):
@@ -101,12 +106,12 @@ def generate_collage(img_list):
 
     return concatenated
 
-def save_collage(collage_img):
+def save_collage(collage_img, user):
     collage_image_io = BytesIO()
     collage_img.save(collage_image_io, format='jpeg')
     img_content = ContentFile(collage_image_io.getvalue())
     
-    collage = Collage()
+    collage = Collage(user=user)
     collage.img.save("collage.jpg", img_content, save=False)
     collage.save()
 

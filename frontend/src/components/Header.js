@@ -8,7 +8,7 @@ class Header extends Component {
     return (
         <HeaderContainer>
             <h1 style={{ fontWeight: 600 }} >🎸 Spotify Collage 🎺</h1>
-            <h5>Generate beautiful collages of your favorite music</h5>
+            <h5>Create <strong>beautiful collages</strong> of your favorite music</h5>
         </HeaderContainer>
     );
   }
