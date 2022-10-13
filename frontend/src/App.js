@@ -8,9 +8,10 @@ import { ImageContainer } from "./styles/Home.styles"
 import { SpotifyAuthContainer } from "./styles/App.styles"
 import axios from "axios";
 import { API_URL } from "./constants";
-import { Dots } from 'loading-animations-react';
+import { Dots, ProgressBar } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
+import './css/App.css';
 
 const App = () => {
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
@@ -20,18 +21,23 @@ const App = () => {
   const REACT_APP_REDIRECT_URI = "http://localhost:3000/"
 
   const getCollage = () => {
-    axios.get(API_URL, {
-      params: {
-        token: token
-      }
-    }).then(
-      res => setCollage({ collage: res.data })
-    );
+    if (collage === "") {
+      console.log('getting collage');
+      axios.get(API_URL, {
+        params: {
+          token: token
+        }
+      }).then(
+        res => setCollage({ collage: res.data })
+      );
+    }
   };
 
   useEffect(() => {
-    console.log('useEffect');
-    getCollage();
+    if (token) {
+      console.log('useEffect');
+      getCollage();
+    }    
   }, [token]);
 
     
@@ -41,9 +47,11 @@ const App = () => {
       {token ? (
         <ImageContainer>
           {collage ? (
+          // Display the collage
           <img src={collage['collage']['img']} alt="collage" style={{ alignSelf: 'center' }} />
         ) : (
-          <Dots />
+          // Display the loading dots
+          <Dots id="loadingDots" text=""/>
         )}
         </ImageContainer>
       ) : (
@@ -52,7 +60,7 @@ const App = () => {
         <SpotifyAuth
           redirectUri={REACT_APP_REDIRECT_URI}
           clientID={SPOTIFY_CLIENT_ID}
-          scopes={[Scopes.userTopRead]} // either style will work
+          scopes={[Scopes.userTopRead]}
           onAccessToken={(token) => setToken(token)}
         />
         </SpotifyAuthContainer>
@@ -62,39 +70,3 @@ const App = () => {
   )
 }
 export default App
-
-/*
-function Home(token) {
-  console.log('Home');
-  
-
-  useEffect(() => {
-    resetState();  
-  })
-  
-  const getCollage = () => {
-    // axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
-    axios.get(API_URL, {
-      params: {
-        token: token
-      }
-    }).then(
-      res => setCollage({ collage: res.data })
-    );
-  };
-  
-  const resetState = () => {
-    getCollage();
-  };
-  // const img = collage['collage'] ? collage['collage']['img'] : null;
-
-  return (    
-      <ImageContainer>
-        {collage ? (
-        <img src={collage['collage']['img']} alt="collage" style={{ alignSelf: 'center' }} />
-      ) : (
-        <h2>no image</h2>
-      )}
-      </ImageContainer>
-  );
-  */
