@@ -3,6 +3,6 @@
     "react-social-icons": "^5.15.0"
   },
   "scripts": {
-    "start": "node frontend/index.js"
+    "start": "node frontend/src/index.js"
   }
 }
