@@ -31,12 +31,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
 SECRET_KEY = env("SECRET_KEY")
 
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-
-# CSRF
-CSRF_COOKIE_SECURE = True
-
 
 # Application definition
 
@@ -155,8 +149,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_SPOTIFY_KEY = env("SOCIAL_AUTH_SPOTIFY_KEY")
-SOCIAL_AUTH_SPOTIFY_SECRET = env("SOCIAL_AUTH_SPOTIFY_SECRET")
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.spotify.SpotifyOAuth2',

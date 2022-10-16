@@ -1,7 +1,6 @@
 import React from "react"
 import { LoginButton, LoginLink } from "../styles/Login.styles"
 
-//const SOCIAL_AUTH_SPOTIFY_SECRET = '885d1d474fe4434688e8ff5049ff8df3'
 
 const Login = () => {
     console.log('Login');
