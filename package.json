@@ -1,5 +1,4 @@
 {
-  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +19,10 @@
     "reactstrap": "^9.1.4",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
+  },
+  "engines": {
+    "node": "15.3.0",    
+    "npm": "6.14.11"  
   },
   "scripts": {
     "start": "react-scripts start",
