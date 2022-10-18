@@ -1,4 +1,5 @@
 from spotifyCollage.settings.base import *
+import django_heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -13,3 +14,5 @@ SECURE_SSL_REDIRECT = True
 
 # CSRF
 CSRF_COOKIE_SECURE = True
+
+django_heroku.settings(locals())
