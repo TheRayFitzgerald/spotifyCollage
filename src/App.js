@@ -48,7 +48,7 @@ const App = () => {
         <ImageContainer>
           {collage ? (
           // Display the collage
-          <img src={collage['collage']['img']} alt="collage" style={{ alignSelf: 'center' }} />
+          <img src={collage['collage']['img']} alt="col99age" style={{ alignSelf: 'center' }} />
         ) : (
           // Display the loading dots
           <Dots id="loadingDots" text=""/>
