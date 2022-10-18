@@ -20,6 +20,7 @@ from math import isqrt
 from concurrent import futures
 import queue
 from django.core.files.base import ContentFile
+from django.conf import settings
 
 
 
@@ -35,21 +36,24 @@ q = queue.Queue()
 @api_view(['GET'])
 def albums_list(request):
 
-        # get the spotify ablum data
-        albums_set, user = get_spotify_album_data(request)
-        
-        # download the album cover art images
-        img_list = download_imgs(albums_set)
+    print('raytest')
+    print(settings.MEDIA_URL)
 
-        # generate the collage using the images
-        collage_img = generate_collage(img_list)
-        
-        # create the collage object 
-        collage =  save_collage(collage_img, user)
+    # get the spotify ablum data
+    albums_set, user = get_spotify_album_data(request)
+    
+    # download the album cover art images
+    img_list = download_imgs(albums_set)
 
-        # serialize the collage object
-        serializer = CollageSerializer(collage, context={'request': request})
-        return Response(serializer.data)
+    # generate the collage using the images
+    collage_img = generate_collage(img_list)
+    
+    # create the collage object 
+    collage =  save_collage(collage_img, user)
+
+    # serialize the collage object
+    serializer = CollageSerializer(collage, context={'request': request})
+    return Response(serializer.data)
 
 
 def get_spotify_album_data(request):
