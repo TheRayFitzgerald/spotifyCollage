@@ -9,10 +9,12 @@ ALLOWED_HOSTS = ['.example.com', 'localhost']
 # LOGIN_REDIRECT_URL = '/display_collage'
 LOGIN_REDIRECT_URL = 'http://localhost:3000/'
 
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
 # CSRF
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+
+# statticfiles STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 django_heroku.settings(locals())
