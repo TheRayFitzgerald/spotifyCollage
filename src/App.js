@@ -7,7 +7,7 @@ import './css/Home.css';
 import { ImageContainer } from "./styles/Home.styles"
 import { SpotifyAuthContainer } from "./styles/App.styles"
 import axios from "axios";
-import { API_URL } from "./constants";
+import { DJANGO_API_URL } from "./constants";
 import { Dots, ProgressBar } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
@@ -19,11 +19,13 @@ const App = () => {
 
   const SPOTIFY_CLIENT_ID = '30a5904c955c4c92b9543e2f9bfb05c7' 
   const REACT_APP_REDIRECT_URI = "https://ancient-stream-51201.herokuapp.com"
+  // const DJANGO_API_URL = "http://localhost:8000/api/albums/"
+  const DJANGO_API_URL = "https://ancient-stream-51201.herokuapp.com/api/albums/"
 
   const getCollage = () => {
     if (collage === "") {
       console.log('getting collage');
-      axios.get(API_URL, {
+      axios.get(DJANGO_API_URL, {
         params: {
           token: token
         }

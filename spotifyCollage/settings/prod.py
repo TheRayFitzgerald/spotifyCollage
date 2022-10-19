@@ -4,7 +4,7 @@ import django_heroku
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.example.com', 'localhost']
+ALLOWED_HOSTS = ['.example.com', 'localhost', 'ancient-stream-51201.herokuapp.com']
 
 # LOGIN_REDIRECT_URL = '/display_collage'
 LOGIN_REDIRECT_URL = 'http://localhost:3000/'

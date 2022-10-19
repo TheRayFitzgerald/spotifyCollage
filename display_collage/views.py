@@ -20,8 +20,6 @@ from math import isqrt
 from concurrent import futures
 import queue
 from django.core.files.base import ContentFile
-from django.conf import settings
-
 
 
 NUMBER_OF_ALBUMS = 50
@@ -35,9 +33,6 @@ q = queue.Queue()
 
 @api_view(['GET'])
 def albums_list(request):
-
-    print('raytest')
-    print(settings.MEDIA_URL)
 
     # get the spotify ablum data
     albums_set, user = get_spotify_album_data(request)
