@@ -7,7 +7,6 @@ import './css/Home.css';
 import { ImageContainer } from "./styles/Home.styles"
 import { SpotifyAuthContainer } from "./styles/App.styles"
 import axios from "axios";
-import { DJANGO_API_URL } from "./constants";
 import { Dots, ProgressBar } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
