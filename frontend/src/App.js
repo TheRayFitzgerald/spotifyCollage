@@ -18,7 +18,7 @@ const App = () => {
   const [collage, setCollage] = useState('');
 
   const SPOTIFY_CLIENT_ID = '30a5904c955c4c92b9543e2f9bfb05c7' 
-  const REACT_APP_REDIRECT_URI = "http://localhost:3000/"
+  const REACT_APP_REDIRECT_URI = "http://localhost:3000"
 
   const getCollage = () => {
     if (collage === "") {
