@@ -7,23 +7,22 @@ import './css/Home.css';
 import { ImageContainer } from "./styles/Home.styles"
 import { SpotifyAuthContainer } from "./styles/App.styles"
 import axios from "axios";
-import { API_URL } from "./constants";
 import { Dots, ProgressBar } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 import './css/App.css';
 
+
 const App = () => {
+  console.log('client id::: ')
+  console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID);
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
   const [collage, setCollage] = useState('');
-
-  const SPOTIFY_CLIENT_ID = '30a5904c955c4c92b9543e2f9bfb05c7' 
-  const REACT_APP_REDIRECT_URI = "http://localhost:3000"
 
   const getCollage = () => {
     if (collage === "") {
       console.log('getting collage');
-      axios.get(API_URL, {
+      axios.get(process.env.REACT_APP_DJANGO_API_URL, {
         params: {
           token: token
         }
@@ -48,7 +47,7 @@ const App = () => {
         <ImageContainer>
           {collage ? (
           // Display the collage
-          <img src={collage['collage']['img']} alt="collage" style={{ alignSelf: 'center' }} />
+          <img src={collage['collage']['img']} alt="col99age" style={{ alignSelf: 'center' }} />
         ) : (
           // Display the loading dots
           <Dots id="loadingDots" text=""/>
@@ -58,8 +57,8 @@ const App = () => {
         // Display the login page
         <SpotifyAuthContainer>
         <SpotifyAuth
-          redirectUri={REACT_APP_REDIRECT_URI}
-          clientID={SPOTIFY_CLIENT_ID}
+          redirectUri={process.env.REACT_APP_REDIRECT_URI}
+          clientID={process.env.REACT_APP_SPOTIFY_CLIENT_ID}
           scopes={[Scopes.userTopRead]}
           onAccessToken={(token) => setToken(token)}
         />

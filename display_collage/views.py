@@ -22,7 +22,6 @@ import queue
 from django.core.files.base import ContentFile
 
 
-
 NUMBER_OF_ALBUMS = 50
 PERIOD = "long_term"
 IMAGE_QUALITY = 1
@@ -35,21 +34,21 @@ q = queue.Queue()
 @api_view(['GET'])
 def albums_list(request):
 
-        # get the spotify ablum data
-        albums_set, user = get_spotify_album_data(request)
-        
-        # download the album cover art images
-        img_list = download_imgs(albums_set)
+    # get the spotify ablum data
+    albums_set, user = get_spotify_album_data(request)
+    
+    # download the album cover art images
+    img_list = download_imgs(albums_set)
 
-        # generate the collage using the images
-        collage_img = generate_collage(img_list)
-        
-        # create the collage object 
-        collage =  save_collage(collage_img, user)
+    # generate the collage using the images
+    collage_img = generate_collage(img_list)
+    
+    # create the collage object 
+    collage =  save_collage(collage_img, user)
 
-        # serialize the collage object
-        serializer = CollageSerializer(collage, context={'request': request})
-        return Response(serializer.data)
+    # serialize the collage object
+    serializer = CollageSerializer(collage, context={'request': request})
+    return Response(serializer.data)
 
 
 def get_spotify_album_data(request):
