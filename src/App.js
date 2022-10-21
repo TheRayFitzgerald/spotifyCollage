@@ -12,7 +12,10 @@ import Header from "./components/Header";
 import Footer from './components/Footer';
 import './css/App.css';
 
+
 const App = () => {
+  console.log('client id::: ')
+  console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID);
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
   const [collage, setCollage] = useState('');
 
@@ -24,7 +27,7 @@ const App = () => {
   const getCollage = () => {
     if (collage === "") {
       console.log('getting collage');
-      axios.get(DJANGO_API_URL, {
+      axios.get(process.env.REACT_APP_DJANGO_API_URL, {
         params: {
           token: token
         }
@@ -59,8 +62,8 @@ const App = () => {
         // Display the login page
         <SpotifyAuthContainer>
         <SpotifyAuth
-          redirectUri={REACT_APP_REDIRECT_URI}
-          clientID={SPOTIFY_CLIENT_ID}
+          redirectUri={process.env.REACT_APP_REDIRECT_URI}
+          clientID={process.env.REACT_APP_SPOTIFY_CLIENT_ID}
           scopes={[Scopes.userTopRead]}
           onAccessToken={(token) => setToken(token)}
         />
