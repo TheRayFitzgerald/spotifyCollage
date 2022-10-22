@@ -177,3 +177,24 @@ CORS_ORIGIN_ALLOW_ALL = False
 # Image file storage
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+
+# Logging
+
+LOGGING = {
+    'version': 1,                       # the dictConfig format version
+    'disable_existing_loggers': False,  # retain the default loggers
+
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': './logs/logfile.log',
+        },
+    },
+
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+        },
+    },
+}
