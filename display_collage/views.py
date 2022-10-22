@@ -2,7 +2,6 @@ from importlib.metadata import metadata
 from unicodedata import name
 from django.shortcuts import render
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
 
 from .models import Album, Collage, User
 from .serializers import *
@@ -11,7 +10,6 @@ from django.views import generic
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import status
 import numpy as np
 import requests
 from PIL import Image
@@ -20,6 +18,9 @@ from math import isqrt
 from concurrent import futures
 import queue
 from django.core.files.base import ContentFile
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 NUMBER_OF_ALBUMS = 50
@@ -30,9 +31,10 @@ imgdict = dict()
 q = queue.Queue()
 
 
-
 @api_view(['GET'])
 def albums_list(request):
+
+    logger.warning('Starting API')
 
     # get the spotify ablum data
     albums_set, user = get_spotify_album_data(request)

@@ -7,15 +7,13 @@ import './css/Home.css';
 import { ImageContainer } from "./styles/Home.styles"
 import { SpotifyAuthContainer } from "./styles/App.styles"
 import axios from "axios";
-import { Dots, ProgressBar } from 'loading-animations-react';
+import { Dots } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 import './css/App.css';
 
 
 const App = () => {
-  console.log('client id::: ')
-  console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID);
   const [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"))
   const [collage, setCollage] = useState('');
 
