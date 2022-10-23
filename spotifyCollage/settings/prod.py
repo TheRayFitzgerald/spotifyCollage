@@ -2,7 +2,7 @@ from spotifyCollage.settings.base import *
 import django_heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.example.com', 'localhost', 'ancient-stream-51201.herokuapp.com']
 

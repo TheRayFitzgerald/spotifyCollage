@@ -36,8 +36,11 @@ def albums_list(request):
 
     logger.warning('Starting API')
 
-    # get the spotify ablum data
-    albums_set, user = get_spotify_album_data(request)
+    # get the spotify album data
+    try:
+        albums_set, user = get_spotify_album_data(request)
+    except Exception as e:
+        logger.error("get_spotify_album_data failed: %s" % e)
     
     # download the album cover art images
     img_list = download_imgs(albums_set)
@@ -58,7 +61,7 @@ def get_spotify_album_data(request):
     Album.objects.all().delete()
     albums_set = set()
 
-    token = request.GET.get('token')
+    token = request.GET.get('toen')
     
     spotify = spotipy.Spotify(token)
 

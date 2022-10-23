@@ -2,6 +2,8 @@ from spotifyCollage.settings.base import *
 
 DEBUG = True
 
+ALLOWED_HOSTS = ['.example.com', 'localhost', 'ancient-stream-51201.herokuapp.com']
+
 # LOGIN_REDIRECT_URL = '/display_collage'
 LOGIN_REDIRECT_URL = 'http://localhost:3000/'
 

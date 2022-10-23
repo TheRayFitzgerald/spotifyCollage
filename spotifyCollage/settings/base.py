@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import environ
-import django_heroku
+import mimetypes
+
+mimetypes.add_type("text/javascript", ".js", True)
 
 env = environ.Env()
 # reading .env file
@@ -180,21 +182,50 @@ MEDIA_URL = 'media/'
 
 
 # Logging
+ADMINS = [('Ray', 'ray.fitzgerald.cbc@gmail.com'),]
 
 LOGGING = {
     'version': 1,                       # the dictConfig format version
     'disable_existing_loggers': False,  # retain the default loggers
 
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+
     'handlers': {
+        'console': {            
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
         'file': {
             'class': 'logging.FileHandler',
             'filename': './logs/logfile.log',
+            'formatter': 'verbose',
+        },
+        'mail_admins': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.AdminEmailHandler',
         },
     },
 
     'loggers': {
         '': {
-            'handlers': ['file'],
+            'handlers': ['file', 'console', 'mail_admins'],
         },
     },
 }
