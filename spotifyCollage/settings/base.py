@@ -12,10 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import environ
-import mimetypes
-
-mimetypes.add_type("text/javascript", ".js", True)
+import environ, mimetypes
 
 env = environ.Env()
 # reading .env file
@@ -24,6 +21,12 @@ environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+mimetypes.add_type("text/javascript", ".js", True)
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/html", ".js", True)
+mimetypes.add_type("text/html", ".css", True)
+
 
 
 # Quick-start development settings - unsuitable for production

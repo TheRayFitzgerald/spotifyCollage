@@ -1,6 +1,6 @@
 from spotifyCollage.settings.base import *
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.example.com', 'localhost', 'ancient-stream-51201.herokuapp.com']
 
@@ -18,3 +18,4 @@ DATABASES = {
         'PORT': '5432',                  
     }
 }
+
