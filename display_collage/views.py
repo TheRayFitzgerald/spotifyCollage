@@ -61,7 +61,7 @@ def get_spotify_album_data(request):
     Album.objects.all().delete()
     albums_set = set()
 
-    token = request.GET.get('toen')
+    token = request.GET.get('token')
     
     spotify = spotipy.Spotify(token)
 

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import environ, mimetypes
+import django_heroku
 
 env = environ.Env()
 # reading .env file
@@ -176,8 +177,8 @@ SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read', 'user-top-r
 
 
 # React
-
-CORS_ORIGIN_ALLOW_ALL = False
+# SET TO FALSE
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Image file storage
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -232,3 +233,6 @@ LOGGING = {
         },
     },
 }
+
+
+django_heroku.settings(locals())

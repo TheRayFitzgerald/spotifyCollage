@@ -1,5 +1,5 @@
 from spotifyCollage.settings.base import *
-import django_heroku
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -31,5 +31,3 @@ SECURE_SSL_REDIRECT = False
 CSRF_COOKIE_SECURE = False
 
 # statticfiles STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
-
-django_heroku.settings(locals())
