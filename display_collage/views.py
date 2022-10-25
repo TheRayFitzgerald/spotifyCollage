@@ -117,8 +117,8 @@ def save_collage(collage_img, user):
     img_content = ContentFile(collage_image_io.getvalue())
 
     # base64 encoded image (string)
-    img_str = base64.b64encode(collage_image_io.getvalue())
-    log.debug("img_str field: %s" % img_str)
+    img_str = base64.b64encode(collage_image_io.getvalue()).decode('ascii')
+    # log.warning("img_str field: %s" % img_str)
     
     collage = Collage(user=user, img_str=img_str)
     collage.img.save("collage.jpg", img_content, save=False)

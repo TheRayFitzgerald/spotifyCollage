@@ -45,7 +45,9 @@ const App = () => {
         <ImageContainer>
           {collage ? (
           // Display the collage
-          <img src={collage['collage']['img']} alt="col99age" style={{ alignSelf: 'center' }} />
+          // <h1 className={"font-bold text-" + fontSize}>Hello World</h1>
+          <img src={"data:image/png;base64," + collage['collage']['img_str']} alt="collage" style={{ alignSelf: 'center' }} />
+          // <img src={collage['collage']['img']} alt="col99age" style={{ alignSelf: 'center' }} />
         ) : (
           // Display the loading dots
           <Dots id="loadingDots" text=""/>
