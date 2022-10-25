@@ -111,17 +111,24 @@ def generate_collage(img_list):
     return concatenated
 
 def save_collage(collage_img, user):
+
+    # Buffer
     collage_image_io = BytesIO()
     collage_img.save(collage_image_io, format='jpeg')
     
-    img_content = ContentFile(collage_image_io.getvalue())
+    ## Old filecontent image saving
+    
+    # img_content = ContentFile(collage_image_io.getvalue())
+    # collage.img.save("collage.jpg", img_content, save=False)
+
 
     # base64 encoded image (string)
+    
     img_str = base64.b64encode(collage_image_io.getvalue()).decode('ascii')
     # log.warning("img_str field: %s" % img_str)
     
     collage = Collage(user=user, img_str=img_str)
-    collage.img.save("collage.jpg", img_content, save=False)
+    
     collage.save()
 
     return collage
