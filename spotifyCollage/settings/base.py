@@ -165,7 +165,7 @@ SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read', 'user-top-r
 
 # React
 # SET TO FALSE
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 
 # Image file storage
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -174,8 +174,7 @@ MEDIA_URL = 'media/'
 # Static Files
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'),
-    MEDIA_ROOT
+    os.path.join(BASE_DIR, 'build/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
