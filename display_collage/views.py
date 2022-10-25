@@ -18,9 +18,9 @@ from math import isqrt
 from concurrent import futures
 import queue
 from django.core.files.base import ContentFile
-import logging
+import logging, base64
 
-logger = logging.getLogger(__name__)
+log = logging.getLogger(__name__)
 
 
 NUMBER_OF_ALBUMS = 50
@@ -34,13 +34,13 @@ q = queue.Queue()
 @api_view(['GET'])
 def albums_list(request):
 
-    logger.warning('Starting API')
+    log.warning('Starting API')
 
     # get the spotify album data
     try:
         albums_set, user = get_spotify_album_data(request)
     except Exception as e:
-        logger.error("get_spotify_album_data failed: %s" % e)
+        log.error("get_spotify_album_data failed: %s" % e)
     
     # download the album cover art images
     img_list = download_imgs(albums_set)
@@ -113,9 +113,14 @@ def generate_collage(img_list):
 def save_collage(collage_img, user):
     collage_image_io = BytesIO()
     collage_img.save(collage_image_io, format='jpeg')
-    img_content = ContentFile(collage_image_io.getvalue())
     
-    collage = Collage(user=user)
+    img_content = ContentFile(collage_image_io.getvalue())
+
+    # base64 encoded image (string)
+    img_str = base64.b64encode(collage_image_io.getvalue())
+    log.debug("img_str field: %s" % img_str)
+    
+    collage = Collage(user=user, img_str=img_str)
     collage.img.save("collage.jpg", img_content, save=False)
     collage.save()
 

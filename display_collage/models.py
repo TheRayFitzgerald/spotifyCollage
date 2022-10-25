@@ -22,6 +22,7 @@ class Album(models.Model):
 
 class Collage(models.Model):
     img = models.ImageField(default=None, upload_to='media/', null=False)
+    img_str = models.TextField(default=None, null=True, blank=True)
 
     # Link many-to-one (collages -> user)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
