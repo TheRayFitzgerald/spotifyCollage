@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const Box = styled.div`
 display: flex;
 padding: 15px 15px 10px;
-background: #191414;
+
 position: absolute;
 bottom: 0;
 width: 100%;
-text-align: right;
+text-align: left;
 `;
 
 export const SignatureContainer = styled.div`

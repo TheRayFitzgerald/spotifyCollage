@@ -15,3 +15,13 @@ export const SpotifyAuthContainer= styled.div`
   background-color: black;
   border-radius: 15px;
 `
+
+export const ImageContainer = styled.div `
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    alignSelf: 'center'
+    height: auto;
+    width: 100%;
+`
+

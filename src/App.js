@@ -3,14 +3,12 @@ import Cookies from 'js-cookie'
 import { SpotifyAuth, Scopes } from 'react-spotify-auth'
 import 'react-spotify-auth/dist/index.css'
 import React, { useState, useEffect } from 'react';
-import './css/Home.css';
-import { ImageContainer } from "./styles/Home.styles"
-import { SpotifyAuthContainer } from "./styles/App.styles"
+import { SpotifyAuthContainer, ImageContainer } from "./styles/App.styles"
 import axios from "axios";
 import { Dots } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
-import './css/App.css';
+import './css/App.scss';
 
 
 const App = () => {

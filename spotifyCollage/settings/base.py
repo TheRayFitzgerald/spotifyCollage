@@ -164,8 +164,6 @@ SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read', 'user-top-r
 
 
 # React
-# SET TO FALSE
-CORS_ORIGIN_ALLOW_ALL = False
 
 # Image file storage
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
