@@ -1,7 +1,9 @@
-all: run_server run_client
+all: build run_server 
+	
 
 run_server:
-	$ python manage.py runserver
+	npm run build
+	$ python manage.py runserver --nostatic
 
 run_client:
 	cd frontend && npm start
