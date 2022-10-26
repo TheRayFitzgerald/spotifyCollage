@@ -62,7 +62,7 @@ const App = () => {
         />
         </SpotifyAuthContainer>
       )}
-    
+    <Footer />
     </Container>
   )
 }
