@@ -6,7 +6,7 @@ import { SocialIcon } from 'react-social-icons';
 const Footer = () => {
     return (
         <Box>
-        <SignatureContainer>Developed by <a href="https://twitter.com/rincidium" style={{color:"black"}}>Ray Fitzgerald</a><br></br></SignatureContainer>
+        <SignatureContainer>Created by <a href="https://twitter.com/rincidium" style={{color:"black"}}>Ray Fitzgerald</a><br></br></SignatureContainer>
             <SocialIconContainer>
                 <SocialIcon url="https://twitter.com/rincidium" class=".mt-0" style={{ height: 29, width: 30, marginRight: "15px" }} bgColor="white"/>
                 <SocialIcon url="https://github.com/TheRayFitzgerald" style={{ height: 30, width: 30, marginRight: "15px" }} bgColor="white"/>

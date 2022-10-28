@@ -29,3 +29,12 @@ SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 
 # statticfiles STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+CORS_ORIGIN_ALLOW_ALL = True
+'''
+CORS_ALLOWED_ORIGINS = [
+    "https://www.rayfitzgerald.io",
+    "https://rayfitzgerald.io",
+    "http://www.rayfitzgerald.io",
+    "http://rayfitzgerald.io",
+]
+'''
