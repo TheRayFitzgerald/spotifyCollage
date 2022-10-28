@@ -4,7 +4,7 @@ from spotifyCollage.settings.base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.example.com', 'localhost', 'ancient-stream-51201.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'ancient-stream-51201.herokuapp.com', 'rayfitzgerald.io']
 CORS_ORIGIN_ALLOW_ALL = False
 
 DATABASES = {
