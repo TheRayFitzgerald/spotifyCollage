@@ -18,7 +18,7 @@ const App = () => {
   const getCollage = () => {
     if (collage === "") {
       console.log('getting collage');
-      axios.get(process.env.REACT_APP_REDIRECT_URI+'/api/albums/', {
+      axios.get(process.env.REACT_APP_DJANGO_API_URL, {
         params: {
           token: token
         }
