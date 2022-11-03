@@ -54,6 +54,19 @@ img {
 }
 
 
+.tweet-div {
+  border-color: black;
+  border-style: solid;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
 
 @include media-breakpoint-up(sm) { img {width: 50%;} }
 @include media-breakpoint-up(md) { img {width: 40%;} }
