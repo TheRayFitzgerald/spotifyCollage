@@ -13,8 +13,8 @@ class Header extends Component {
   render() {
     return (
         <HeaderContainer>
-            <h1 style={{ fontWeight: 600 }} >🎸 <FontAwesomeIcon icon={faSpotify} size="sm" /> Music Collage 🎺 </h1>            
-            <h6>Create <strong>beautiful collages</strong> of your favorite Spotify music</h6>
+            <h1 style={{ fontWeight: 600 }} ><FontAwesomeIcon icon={faSpotify} size="sm" /> Music Collage</h1>            
+            <h6>Create <strong>beautiful collages</strong> of your favorite <strong>Spotify music</strong></h6>
         </HeaderContainer>
     );
   }

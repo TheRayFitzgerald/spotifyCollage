@@ -12,6 +12,11 @@ import Footer from './components/Footer';
 import './css/App.scss';
 import { TwitterShareButton, TwitterIcon } from 'react-share';
 
+/*
+              <div className="tweet-div">
+                <a  href="https://twitter.com/intent/tweet?text=Hello%20world">Tweet</a>
+              </div>
+              */
 
 
 const App = () => {
@@ -61,9 +66,6 @@ const App = () => {
             <ImageContainer>
               <img src={"data:image/png;base64," + collage['collage']['img_str']} alt="collage" style={{ alignSelf: 'center' }} />
               
-              <div className="tweet-div">
-                <a  href="https://twitter.com/intent/tweet?text=Hello%20world">Tweet</a>
-              </div>
             </ImageContainer>
         ) : (
           // Display the loading dots
