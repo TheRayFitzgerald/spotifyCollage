@@ -10,5 +10,7 @@ export const HeaderContainer = styled.div `
     text-align: center;
     color: white;
     background-color: #1DB954;
-    
+    img {
+        width: 40px;
+    }
 `
