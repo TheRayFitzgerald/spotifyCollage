@@ -17,6 +17,14 @@ color: white;
 font-size: 17;
 `
 
+export const SignatureContainer2 = styled.div`
+display: block;
+margin-left: auto;
+margin-right: auto;
+color: white;
+font-size: 17;
+`
+
 export const SocialIconContainer = styled.div`
 display: block;
 margin-left: auto;
