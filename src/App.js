@@ -10,6 +10,8 @@ import { Dots } from 'loading-animations-react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 import './css/App.scss';
+import { faSpotify } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TwitterShareButton, TwitterIcon } from 'react-share';
 
 /*
@@ -43,7 +45,6 @@ const App = () => {
       getCollage();
     }    
   }, [token]);
-
     
   return (
     <Container>
@@ -83,6 +84,13 @@ const App = () => {
         />
         </SpotifyAuthContainer>
       )}
+      {/* Create a button that links to spotify */}
+      <br></br>
+      <div className="spotify-button">
+        <a href="https://open.spotify.com" target="_blank" rel="noreferrer">
+          <button className="spotify-button"><FontAwesomeIcon icon={faSpotify} size="sm" /> Open Spotify</button>
+        </a>
+      </div>
     <Footer />
     </Container>
   )

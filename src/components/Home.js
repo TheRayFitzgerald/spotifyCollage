@@ -13,9 +13,9 @@ function Home(token) {
   const [collage, setCollage] = useState('');
 
   useEffect(() => {
-    resetState();  
+    resetState();
   })
-  
+
   const getCollage = () => {
     // axios.get(API_URL).then(res => setAlbums({ albums: res.data }));
     axios.get(API_URL, {
@@ -26,20 +26,27 @@ function Home(token) {
       res => setCollage({ collage: res.data })
     );
   };
+
+  // detect if the Spotify desktop app is already installed on the user's computer
+  // if is set a variable to true
+  // if not set a variable to false
+
   
+
+
   const resetState = () => {
     getCollage();
   };
   // const img = collage['collage'] ? collage['collage']['img'] : null;
 
-  return (    
-      <ImageContainer>
-        {collage ? (
+  return (
+    <ImageContainer>
+      {collage ? (
         <img src={collage['collage']['img']} alt="collage" style={{ alignSelf: 'center' }} />
       ) : (
         <h2>no image</h2>
       )}
-      </ImageContainer>
+    </ImageContainer>
   );
 
   /*
@@ -99,17 +106,17 @@ function Home(token) {
     <h3>This is a Functional Component</h3>
   );
   */
-  /*
-  return (
-    <Container style={{ marginTop: "20px" }}>
-      <Row>
-        <Col>
-          {AlbumGrid(albums)}
-        </Col>
-      </Row>
-    </Container>
-  );
-  */
+/*
+return (
+  <Container style={{ marginTop: "20px" }}>
+    <Row>
+      <Col>
+        {AlbumGrid(albums)}
+      </Col>
+    </Row>
+  </Container>
+);
+*/
 
 
 
